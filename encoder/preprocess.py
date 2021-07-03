@@ -127,4 +127,4 @@ def preprocess_librispeech(dataset_root: Path, out_dir: Path, skip_existing=Fals
 
         # Preprocess all speakers
         speaker_dirs = list(dataset_root.glob("*"))
-        _preprocess_speaker_dirs(speaker_dirs, dataset_name, datasets_root, out_dir, "flac", skip_existing, logger)
+        _preprocess_speaker_dirs(speaker_dirs, dataset_name, dataset_root, out_dir, "flac", skip_existing, logger)
