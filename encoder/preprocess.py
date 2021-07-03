@@ -87,7 +87,7 @@ def _preprocess_speaker_dirs(speaker_dirs, dataset_name, datasets_root, out_dir,
 
         # Gather all audio files for that speaker recursively
         sources_file = sources_fpath.open("a" if skip_existing else "w")
-        for in_fpath in speaker_dirs.glob("**/*.%s" % extension):
+        for in_fpath in speaker_dir.glob("**/*.%s" % extension):
             # check if the target output file already exists
             out_fname = "_".join(in_fpath.relative_to(speaker_dir).parts)
             out_fname = out_fname.replace(".%s" % extension, ".npy")
