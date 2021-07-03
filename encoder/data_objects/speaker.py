@@ -1,5 +1,5 @@
-from random_cycler import RandomCycler # encoder.data_objects.
-from utterance import Utterance # encoder.data_objects.
+from encoder.data_objects.random_cycler import RandomCycler
+from encoder.data_objects.utterance import Utterance
 from pathlib import Path
 
 

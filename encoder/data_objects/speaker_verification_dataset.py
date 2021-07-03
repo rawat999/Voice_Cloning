@@ -1,7 +1,7 @@
-from random_cycler import RandomCycler
-from speaker_batch import SpeakerBatch
-from speaker import Speaker # encoder.data_objects.
-#from encoder.params_data import partials_n_frames
+from encoder.data_objects.random_cycler import RandomCycler
+from encoder.data_objects.speaker_batch import SpeakerBatch
+from encoder.data_objects.speaker import Speaker
+from encoder.params_data import partials_n_frames
 from torch.utils.data import Dataset, DataLoader
 from pathlib import Path
 
@@ -44,30 +44,3 @@ class SpeakerVerificationDataLoader(DataLoader):
 
     def collate(self, speakers):
         return SpeakerBatch(speakers, self.utterances_per_speaker, partials_n_frames)
-
-
-## Model parameters
-model_hidden_size = 256
-model_embedding_size = 256
-model_num_layers = 3
-
-
-## Training parameters
-learning_rate_init = 1e-4
-speakers_per_batch = 4
-utterances_per_speaker = 5
-
-import torch
-p = Path('./dev-clean/')
-data = SpeakerVerificationDataset(p)
-
-loader = SpeakerVerificationDataLoader(p, speakers_per_batch, utterances_per_speaker)
-
-init_step = 1
-for i in data:
-    #profiler.tick("Blocking, waiting for batch (threaded)")
-
-    # Forward pass
-    #inputs = torch.from_numpy(speaker_batch.data)
-    print(i)
-    break;
