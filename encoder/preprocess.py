@@ -12,6 +12,7 @@ class DatasetLog:
     """
     Registers metadata about the dataset in a text file.
     """
+
     def __init__(self, root, name):
         self.text_file = open(Path(root, "Log_%s.txt" % name.replace("/", "_")), "w")
         self.sample_data = dict()
@@ -105,7 +106,7 @@ def _preprocess_speaker_dirs(speaker_dirs, dataset_name, datasets_root, out_dir,
 
             out_fpath = speaker_out_dir.joinpath(out_fname)
             np.save(out_fpath, frames)
-            logger.add_sample(duration=len(wav)/sampling_rate)
+            logger.add_sample(duration=len(wav) / sampling_rate)
             sources_file.write("%s,%s\n" % (out_fname, in_fpath))
 
         sources_file.close()
@@ -125,6 +126,5 @@ def preprocess_librispeech(dataset_root: Path, out_dir: Path, skip_existing=Fals
             return
 
         # Preprocess all speakers
-        speakers_dirs = list(dataset_root.glob("*"))
-        _preprocess_speaker_dirs(speakers_dirs, dataset_name, dataset_root, out_dir,
-                                 "flac", skip_existing, logger)
+        speaker_dirs = list(dataset_root.glob("*"))
+        _preprocess_speaker_dirs(speaker_dirs, dataset_name, datasets_root, out_dir, "flac", skip_existing, logger)
